@@ -1,0 +1,17 @@
+---
+- name: Ensure Docker is installed
+  import_role:
+    name: docker_setup
+
+- name: Pull the Nginx Docker image
+  docker_image:
+    name: nginx
+    source: pull
+
+- name: Run Nginx container
+  docker_container:
+    name: nginx
+    image: nginx
+    state: started
+    ports:
+      - "3000:80"
